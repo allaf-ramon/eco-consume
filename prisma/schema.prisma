@@ -12,3 +12,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model ConsumerUnitEconomies {
+  id                                  Int      @id
+  consumer_unit                       String
+  status                              String
+  month_ref                           DateTime
+  value                               Float
+  economy_value                       Float
+  power_distribution_unit_bill_value  Float
+}
