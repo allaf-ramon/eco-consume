@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EcoConsume
 
-## Getting Started
+Sistema de análise de consumo de energia, permitindo visualizar economias e métricas por unidade consumidora.
 
-First, run the development server:
+
+## ✨ Funcionalidades
+
+- **Análise de Economia**: Cálculo automático de economia utilizando a fórmula:
+    ```
+    (economia / (valor + economia + taxa_distribuição)) * 100
+    ```
+- **Importação Automática**: Processamento eficiente do arquivo `base_teste.csv`
+- **Visualização em Tabela**: Interface intuitiva para análise de métricas por unidade
+
+## 🚀 Como Executar
+
+### Usando Docker (Recomendado)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone o repositório
+git clone https://github.com/allaf-ramon/eco-consume.git
+
+# Entre na pasta do projeto
+cd eco-consume
+
+# Inicie os containers
+docker-compose up --build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Execução Local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Instale as dependências
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Gere o cliente Prisma
+npx prisma generate
 
-## Learn More
+# Execute as migrações
+npx prisma migrate deploy
 
-To learn more about Next.js, take a look at the following resources:
+# Popule o banco de dados
+npm run seed
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build do projeto
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Inicie a aplicação
+npm run start
+```
 
-## Deploy on Vercel
+## 🛠️ Tecnologias
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js
+- Next.js
+- Prisma
+- PostgreSQL
+- Docker
+- Docker Compose
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Configuração
+
+A aplicação utiliza as seguintes variáveis de ambiente:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/base_teste"
+```
+
+## 📝 Notas
+
+- A aplicação estará disponível em `http://localhost:3000`
+- O banco de dados PostgreSQL roda na porta `5432`
+- Os dados persistem através do volume Docker `db_data`
