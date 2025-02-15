@@ -2,6 +2,7 @@
 
 Sistema de análise de consumo de energia, permitindo visualizar economias e métricas por unidade consumidora.
 
+![Interface](https://github.com/user-attachments/assets/40e3f03d-1349-418a-b9be-3bada8b778ea)
 
 ## ✨ Funcionalidades
 
