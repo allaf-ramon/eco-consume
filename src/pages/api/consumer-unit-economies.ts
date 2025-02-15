@@ -7,13 +7,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const result = await prisma.$queryRaw<
                 { consumer_unit: string; economy_percentage: number }[]
             >`
-        SELECT
-          consumer_unit,
-          (SUM(economy_value) / SUM(value + economy_value + power_distribution_unit_bill_value)) * 100
-            AS economy_percentage
-        FROM consumer_unit_economies
-        GROUP BY consumer_unit
-      `
+      SELECT
+        consumer_unit,
+        (SUM(economy_value) / SUM(value + economy_value + power_distribution_unit_bill_value)) * 100 AS economy_percentage
+      FROM "ConsumerUnitEconomies"
+      GROUP BY consumer_unit;
+    `
 
             return res.status(200).json(result)
         } catch (error) {
